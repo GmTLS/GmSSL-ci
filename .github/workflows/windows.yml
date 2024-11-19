@@ -10,8 +10,6 @@ env:
 jobs:
   windows:
     runs-on: windows-latest
-    env:
-      PATH: C:\Program Files\GmSSL\bin;%PATH%
     continue-on-error: false
     strategy:
       fail-fast: false
@@ -43,6 +41,8 @@ jobs:
           nmake 
           tree
           nmake install
+          set PATH=%PATH%;C:\Program Files\GmSSL\bin
+        shell: cmd
 
       - name: Checkout tools repo
         uses: actions/checkout@v4
@@ -60,6 +60,8 @@ jobs:
           cache: true
 
       - name: Build phpredis
+        env:
+          PATH: C:\Program Files\GmSSL\bin;%PATH%
         run: |
           cd ${{github.workspace}}/GmSSL-PHP
           phpize
