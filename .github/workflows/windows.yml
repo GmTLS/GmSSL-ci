@@ -34,12 +34,7 @@ jobs:
       - name: Build
         working-directory: ${{github.workspace}}\build
         # Build your program with the given configuration
-        run: |
-          nmake 
-          tree
-          nmake install
-          set PATH=%PATH%;C:\Program Files\GmSSL\bin
-        shell: cmd
+        run: nmake
       - name: Checkout tools repo
         uses: actions/checkout@v4
         with:
@@ -55,10 +50,10 @@ jobs:
           cache: true
       - name: Build phpredis
         env:
-          PATH: C:\Program Files\GmSSL\bin;%PATH%
+          PATH: ${{github.workspace}}\build\bin;%PATH%
         run: |
           phpize
-          ./configure --enable-gmssl --with-prefix=${{github.workspace}}/GmSSL-PHP
+          ./configure --enable-gmssl --with-prefix=${{steps.setup-php-sdk.outputs.prefix}}
           nmake
           tree
       # - name: Upload artifacts
