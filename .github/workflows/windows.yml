@@ -54,7 +54,7 @@ jobs:
         run: |
           cd ${{github.workspace}}/GmSSL-PHP
           phpize
-          ./configure
+          cmd /c configure.bat
           nmake
           tree
       # - name: Upload artifacts
