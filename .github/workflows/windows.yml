@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: GmSSL-v3
+          ref: d655c06b3a6b0fe8cff900f293bf0e5aac6eb0a2
       - name: Install PHP ${{ matrix.php }}
         uses: php/setup-php-sdk@v0.10
         id: setup-php-sdk
