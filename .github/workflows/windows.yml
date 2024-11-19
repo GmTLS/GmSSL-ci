@@ -52,8 +52,9 @@ jobs:
         env:
           PATH: ${{github.workspace}}\build\bin;%PATH%
         run: |
+          cd ${{github.workspace}}/GmSSL-PHP
           phpize
-          ./configure --enable-gmssl --with-prefix=${{steps.setup-php-sdk.outputs.prefix}}
+          ./configure
           nmake
           tree
       # - name: Upload artifacts
