@@ -25,8 +25,9 @@ jobs:
           mkdir build
           cd build
           cmake ..
-          make
-          make install
+          nmake
+          tree
+          nmake install
           
       - name: Install PHP ${{ matrix.php }}
         uses: php/setup-php-sdk@v0.10
