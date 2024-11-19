@@ -63,9 +63,9 @@ jobs:
         env:
           PATH: C:\Program Files\GmSSL\bin;%PATH%
         run: |
-          cd ${{github.workspace}}/GmSSL-PHP
+          # cd ${{github.workspace}}/GmSSL-PHP
           phpize
-          ./configure
+          ./configure --enable-gmssl --with-prefix=${{steps.setup-php-sdk.outputs.prefix}}
           nmake
           tree
 
